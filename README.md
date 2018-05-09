@@ -16,13 +16,13 @@ TS_SearchFlights is a console application that takes data from three separate pr
 ## Screenshots
 
 ### One Search
-![One_Search](*)
+![One_Search](https://github.com/egomatsushita/TS-SearchFlights/blob/master/SearchFlights/Public/main.gif)
 
 ### Two Searches
-![Two_Searches](*)
+![Two_Searches](https://github.com/egomatsushita/TS-SearchFlights/blob/master/SearchFlights/Public/two_searches.gif)
 
 ### Error
-![Error](*)
+![Error](https://github.com/egomatsushita/TS-SearchFlights/blob/master/SearchFlights/Public/error.gif)
 
 ## Install
 
