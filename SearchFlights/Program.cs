@@ -57,8 +57,11 @@ namespace SearchFlights
         private static void DisplayMenu(ref string inputText)
         {
             Console.WriteLine("*************************************************************");
-            Console.WriteLine("* To Exit: -1                                               *");
+            Console.WriteLine("* ----------------- Search Flights v.1.0 ------------------ *");
+            Console.WriteLine("*                                                           *");
             Console.WriteLine("* To Search: \"searchFlights -o (Origin) -d (Destination)\"   *");
+            Console.WriteLine("* To Exit: -1                                               *");
+            Console.WriteLine("*                                                           *");
             Console.WriteLine("*************************************************************\n");
             Console.Write("$");
             inputText = Console.ReadLine();
