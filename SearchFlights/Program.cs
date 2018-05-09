@@ -83,7 +83,7 @@ namespace SearchFlights
             inputText = Console.ReadLine();
         }
 
-        private static string GetProviderPath(string provider)
+        public static string GetProviderPath(string provider)
         {
             string path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
             int index = path.IndexOf("SearchFlights");
