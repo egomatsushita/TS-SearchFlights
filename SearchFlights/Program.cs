@@ -21,21 +21,13 @@ namespace SearchFlights
             int space = 3;
 
             DisplayMenu(ref inputText);
-
-            while (inputText.IndexOf("-o") == -1 || inputText.IndexOf("-d") == -1)
-            {
-                DisplayMenu(ref inputText);
-                if (inputText == "-1")
-                {
-                    break;
-                }
-            }
-
+           
             while (inputText != "-1")
             {
                 flightsData = new FlightsCollection();
                 indexOrigin = inputText.IndexOf("-o") + space;
                 indexDestination = inputText.IndexOf("-d") + space;
+
                 try
                 {
                     origin = inputText.Substring(indexOrigin, cityLength).ToUpper();
