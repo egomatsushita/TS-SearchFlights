@@ -94,9 +94,9 @@ namespace SearchFlights
         private static string GetProviderPath(string provider)
         {
             string path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
-            int index = path.IndexOf("TS_SearchFlights");
+            int index = path.IndexOf("SearchFlights");
             string excludePath = path.Substring(index);
-            string includePath = $"TS_SearchFlights\\SearchFlights\\Providers\\{provider}";
+            string includePath = $"SearchFlights\\Providers\\{provider}";
             string providerPath = path.Replace(excludePath, includePath);
 
             return providerPath;

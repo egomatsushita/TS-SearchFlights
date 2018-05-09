@@ -5,3 +5,10 @@ C:\Users\egoma\Downloads\TS_SearchFlights\SearchFlights\obj\Debug\SearchFlights.
 C:\Users\egoma\Downloads\TS_SearchFlights\SearchFlights\obj\Debug\SearchFlights.csproj.CoreCompileInputs.cache
 C:\Users\egoma\Downloads\TS_SearchFlights\SearchFlights\obj\Debug\SearchFlights.exe
 C:\Users\egoma\Downloads\TS_SearchFlights\SearchFlights\obj\Debug\SearchFlights.pdb
+C:\Users\egoma\Downloads\TS_Search_Flights\SearchFlights\bin\Debug\SearchFlights.exe.config
+C:\Users\egoma\Downloads\TS_Search_Flights\SearchFlights\bin\Debug\SearchFlights.exe
+C:\Users\egoma\Downloads\TS_Search_Flights\SearchFlights\bin\Debug\SearchFlights.pdb
+C:\Users\egoma\Downloads\TS_Search_Flights\SearchFlights\obj\Debug\SearchFlights.csprojResolveAssemblyReference.cache
+C:\Users\egoma\Downloads\TS_Search_Flights\SearchFlights\obj\Debug\SearchFlights.csproj.CoreCompileInputs.cache
+C:\Users\egoma\Downloads\TS_Search_Flights\SearchFlights\obj\Debug\SearchFlights.exe
+C:\Users\egoma\Downloads\TS_Search_Flights\SearchFlights\obj\Debug\SearchFlights.pdb
