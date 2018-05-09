@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace SearchFlights
 {
@@ -10,6 +11,47 @@ namespace SearchFlights
     {
         static void Main(string[] args)
         {
+            FlightsCollection flightsData;
+            int indexOrigin;
+            int indexDestination;
+            string origin;
+            string destination;
+            string inputText = "";
+            int cityLength = 3;
+            int space = 3;
+
+            DisplayMenu(ref inputText);
+            while (inputText != "-1")
+            {
+                flightsData = new FlightsCollection();
+                indexOrigin = inputText.IndexOf("-o") + space;
+                indexDestination = inputText.IndexOf("-d") + space;
+                origin = inputText.Substring(indexOrigin, cityLength);
+                destination = inputText.Substring(indexDestination, cityLength);
+
+                SearchFligths(origin, destination, flightsData);
+
+                var searchedFlights =
+                    flightsData.flightsCollection
+                        .OrderBy(flight => flight.Price.Substring(1))
+                        .ThenBy(flight => Convert.ToDateTime(flight.DepartureTime));
+
+                if (searchedFlights.Any())
+                {
+                    Console.WriteLine();
+                    foreach (var flight in searchedFlights)
+                    {
+                        Console.WriteLine($"{flight.Origin}-- > {flight.Destination}({flight.DepartureTime.Replace('-', '/')}-- >{flight.DestinationTime.Replace('-', '/')}) - {flight.Price}");
+                    }
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.WriteLine($"\nNo Flights Found for {origin} --> {destination}\n");
+                }
+
+                DisplayMenu(ref inputText);
+            }
         }
 
         private static void DisplayMenu(ref string inputText)
@@ -25,9 +67,9 @@ namespace SearchFlights
         private static string GetProviderPath(string provider)
         {
             string path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
-            int index = path.IndexOf("SearchTest");
+            int index = path.IndexOf("TS_SearchFlights");
             string excludePath = path.Substring(index);
-            string includePath = $"SearchTest\\Providers\\{provider}";
+            string includePath = $"TS_SearchFlights\\SearchFlights\\Providers\\{provider}";
             string providerPath = path.Replace(excludePath, includePath);
 
             return providerPath;
@@ -44,11 +86,11 @@ namespace SearchFlights
             return delimiter;
         }
 
-        private static bool CheckIfExist(string prvDepartureTime, string prvDestinationTime, string prvPrice, FlightsCollectionTest flightsData)
+        private static bool CheckIfExist(string prvDepartureTime, string prvDestinationTime, string prvPrice, FlightsCollection flightsData)
         {
-            if (flightsData.flightCollection != null)
+            if (flightsData.flightsCollection != null)
             {
-                foreach (var flight in flightsData.flightCollection)
+                foreach (var flight in flightsData.flightsCollection)
                 {
                     if (flight.DepartureTime == prvDepartureTime &&
                         flight.DestinationTime == prvDestinationTime &&
@@ -62,7 +104,7 @@ namespace SearchFlights
             return false;
         }
 
-        private static void SearchFligths(string origin, string destination, FlightsCollectionTest flightsData)
+        private static void SearchFligths(string origin, string destination, FlightsCollection flightsData)
         {
             string[] providers = { "Provider1.txt", "Provider2.txt", "Provider3.txt" };
             string[] fields;
@@ -97,8 +139,8 @@ namespace SearchFlights
                         {
                             if (!CheckIfExist(prvDepartureTime, prvDestinationTime, prvPrice, flightsData))
                             {
-                                flightsData.flightCollection
-                                    .Add(new FlightTest
+                                flightsData.flightsCollection
+                                    .Add(new Flights
                                     {
                                         Origin = prvOrigin,
                                         DepartureTime = prvDepartureTime,
