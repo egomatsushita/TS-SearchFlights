@@ -21,13 +21,20 @@ namespace SearchFlights
             int space = 3;
 
             DisplayMenu(ref inputText);
+
+            while (inputText == "")
+            {
+                //Console.WriteLine("Please, enter \"searchFlights -o (Origin) -d (Destination)\" or \"-1\"");
+                DisplayMenu(ref inputText);
+            }
+
             while (inputText != "-1")
             {
                 flightsData = new FlightsCollection();
                 indexOrigin = inputText.IndexOf("-o") + space;
                 indexDestination = inputText.IndexOf("-d") + space;
-                origin = inputText.Substring(indexOrigin, cityLength);
-                destination = inputText.Substring(indexDestination, cityLength);
+                origin = inputText.Substring(indexOrigin, cityLength).ToUpper();
+                destination = inputText.Substring(indexDestination, cityLength).ToUpper();
 
                 SearchFligths(origin, destination, flightsData);
 
@@ -43,7 +50,7 @@ namespace SearchFlights
                     {
                         Console.WriteLine($"{flight.Origin}-- > {flight.Destination}({flight.DepartureTime.Replace('-', '/')}-- >{flight.DestinationTime.Replace('-', '/')}) - {flight.Price}");
                     }
-                    Console.WriteLine();
+                    Console.WriteLine("\n\n");
                 }
                 else
                 {
@@ -52,6 +59,16 @@ namespace SearchFlights
 
                 DisplayMenu(ref inputText);
             }
+
+            //try
+            //{
+                
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine("Please, enter \"searchFlights -o (Origin) -d (Destination)\" or \"-1\"");
+            //}
+            
         }
 
         private static void DisplayMenu(ref string inputText)
