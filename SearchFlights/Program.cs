@@ -44,6 +44,24 @@ namespace SearchFlights
             return delimiter;
         }
 
+        private static bool CheckIfExist(string prvDepartureTime, string prvDestinationTime, string prvPrice, FlightsCollectionTest flightsData)
+        {
+            if (flightsData.flightCollection != null)
+            {
+                foreach (var flight in flightsData.flightCollection)
+                {
+                    if (flight.DepartureTime == prvDepartureTime &&
+                        flight.DestinationTime == prvDestinationTime &&
+                        flight.Price == prvPrice)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
         private static void SearchFligths(string origin, string destination, FlightsCollectionTest flightsData)
         {
             string[] providers = { "Provider1.txt", "Provider2.txt", "Provider3.txt" };
