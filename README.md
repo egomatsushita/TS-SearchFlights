@@ -15,8 +15,14 @@ TS_SearchFlights is a console application that takes data from three separate pr
 
 ## Screenshots
 
-### Console
-![Console](*)
+### One Search
+![One_Search](*)
+
+### Two Searches
+![Two_Searches](*)
+
+### Error
+![Error](*)
 
 ## Install
 

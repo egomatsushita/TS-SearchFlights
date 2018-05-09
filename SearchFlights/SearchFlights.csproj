@@ -55,6 +55,9 @@
     <Content Include="Providers\Provider2.txt" />
     <Content Include="Providers\Provider3.txt" />
     <Content Include="Providers\Provider1.txt" />
+    <Content Include="Public\error.gif" />
+    <Content Include="Public\main.gif" />
+    <Content Include="Public\two_searches.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
