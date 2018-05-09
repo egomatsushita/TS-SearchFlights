@@ -22,10 +22,13 @@ namespace SearchFlights
 
             DisplayMenu(ref inputText);
 
-            while (inputText == "")
+            while (inputText.IndexOf("-o") == -1 || inputText.IndexOf("-d") == -1)
             {
-                //Console.WriteLine("Please, enter \"searchFlights -o (Origin) -d (Destination)\" or \"-1\"");
                 DisplayMenu(ref inputText);
+                if (inputText == "-1")
+                {
+                    break;
+                }
             }
 
             while (inputText != "-1")
@@ -33,8 +36,22 @@ namespace SearchFlights
                 flightsData = new FlightsCollection();
                 indexOrigin = inputText.IndexOf("-o") + space;
                 indexDestination = inputText.IndexOf("-d") + space;
-                origin = inputText.Substring(indexOrigin, cityLength).ToUpper();
-                destination = inputText.Substring(indexDestination, cityLength).ToUpper();
+                try
+                {
+                    origin = inputText.Substring(indexOrigin, cityLength).ToUpper();
+                    if (origin.Contains('-') || origin.Trim() == "")
+                    {
+                        throw new Exception();
+                    }
+
+                    destination = inputText.Substring(indexDestination, cityLength).ToUpper();
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine("\nPlease, enter origin and destination.\n");
+                    DisplayMenu(ref inputText);
+                    continue;
+                }
 
                 SearchFligths(origin, destination, flightsData);
 
@@ -59,16 +76,6 @@ namespace SearchFlights
 
                 DisplayMenu(ref inputText);
             }
-
-            //try
-            //{
-                
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine("Please, enter \"searchFlights -o (Origin) -d (Destination)\" or \"-1\"");
-            //}
-            
         }
 
         private static void DisplayMenu(ref string inputText)
