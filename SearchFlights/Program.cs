@@ -22,6 +22,17 @@ namespace SearchFlights
             inputText = Console.ReadLine();
         }
 
+        private static string GetProviderPath(string provider)
+        {
+            string path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+            int index = path.IndexOf("SearchTest");
+            string excludePath = path.Substring(index);
+            string includePath = $"SearchTest\\Providers\\{provider}";
+            string providerPath = path.Replace(excludePath, includePath);
+
+            return providerPath;
+        }
+
         private static void SearchFligths(string origin, string destination, FlightsCollectionTest flightsData)
         {
             string[] providers = { "Provider1.txt", "Provider2.txt", "Provider3.txt" };
