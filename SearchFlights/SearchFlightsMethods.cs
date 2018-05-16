@@ -47,33 +47,9 @@ namespace SearchFlights
             return delimiter;
         }
 
-        public static bool CheckIfExist(DateTime prvDepartureTime, DateTime prvDestinationTime, Decimal prvPrice, FlightsCollection flightsData)
-        {
-            if (flightsData.flightsCollection != null)
-            {
-                foreach (var flight in flightsData.flightsCollection)
-                {
-                    if (flight.DepartureTime == prvDepartureTime &&
-                        flight.DestinationTime == prvDestinationTime &&
-                        flight.Price == prvPrice)
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
-        }
-
         public static void SearchFligths(string origin, string destination, FlightsCollection flightsData)
         {
-            string[] providers = { "Provider1.txt", "Provider2.txt", "Provider3.txt" };
-            string[] fields;
-            string prvOrigin;
-            DateTime prvDepartureTime;
-            string prvDestination;
-            DateTime prvDestinationTime;
-            Decimal prvPrice;
+            string[] providers = { "Provider1.txt", "Provider2.txt", "Provider3.txt" };          
             char delimiter;
             string providerPath;
 
@@ -89,29 +65,7 @@ namespace SearchFlights
 
                     while (recordIn != null)
                     {
-                        fields = recordIn.Split(delimiter);
-                        prvOrigin = fields[0];
-                        bool res = DateTime.TryParse(fields[1].Replace('-', '/'), out prvDepartureTime);
-                        prvDestination = fields[2];
-                        bool res1 = DateTime.TryParse(fields[3].Replace('-', '/'), out prvDestinationTime);
-                        bool res2 = Decimal.TryParse(fields[4].Substring(1), out prvPrice);
-
-                        if (prvOrigin == origin && prvDestination == destination)
-                        {
-                            if (!CheckIfExist(prvDepartureTime, prvDestinationTime, prvPrice, flightsData))
-                            {
-                                flightsData.flightsCollection
-                                    .Add(new Flights
-                                    {
-                                        Origin = prvOrigin,
-                                        DepartureTime = prvDepartureTime,
-                                        Destination = prvDestination,
-                                        DestinationTime = prvDestinationTime,
-                                        Price = prvPrice
-                                    });
-                            }
-                        }
-
+                        AddFlights(recordIn, delimiter, origin, destination, flightsData);
                         recordIn = reader.ReadLine();
                     }
                 }
@@ -122,5 +76,36 @@ namespace SearchFlights
                 }
             }
         }
+
+        public static void AddFlights(string recordIn, char delimiter, string origin, string destination, FlightsCollection flightsData)
+        {
+            string[] fields;
+            DateTime prvDepartureTime;
+            DateTime prvDestinationTime;
+            Decimal prvPrice;
+            fields = recordIn.Split(delimiter);
+            string prvOrigin = fields[0];
+            DateTime.TryParse(fields[1].Replace('-', '/'), out prvDepartureTime);
+            string prvDestination = fields[2];
+            DateTime.TryParse(fields[3].Replace('-', '/'), out prvDestinationTime);
+            Decimal.TryParse(fields[4].Substring(1), out prvPrice);
+
+            if (prvOrigin == origin && prvDestination == destination)
+            {
+                Flights aFlight = new Flights
+                {
+                    Origin = prvOrigin,
+                    DepartureTime = prvDepartureTime,
+                    Destination = prvDestination,
+                    DestinationTime = prvDestinationTime,
+                    Price = prvPrice
+                };
+
+                if (!flightsData.flightsCollection.Contains(aFlight))
+                {
+                    flightsData.flightsCollection.Add(aFlight);
+                }
+            }
+        }       
     }
 }

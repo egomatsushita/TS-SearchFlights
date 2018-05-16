@@ -8,22 +8,9 @@ namespace UnitTestSearchFlights
     public class SearchFlightsTests
     {
         [TestMethod]
-        public void CheckIfExist_DepTime_DestTime_Price_FlightData_ReturnFalse()
+        public void AddFlights_RecordIn_Delimiter_Origin_Destination_FlightsData_ReturnTrue()
         {
-            DateTime departureTime = Convert.ToDateTime("6/15/2014 6:45:00");
-            DateTime destinationTime = Convert.ToDateTime("6/15/2014 8:54:00");
-            Decimal price = 578.00m;
-            FlightsCollection flightsData = new FlightsCollection();
-
-            bool result = SearchFlightsMethods.CheckIfExist(departureTime, destinationTime, price, flightsData);
-
-            Assert.IsFalse(result);
-        }
-
-        [TestMethod]
-        public void CheckIfExist_DepTime_DestTime_Price_FlightData_ReturnTrue()
-        {
-            Flights flight1 = new Flights
+            Flights flight = new Flights
             {
                 Origin = "YYZ",
                 DepartureTime = Convert.ToDateTime("6/15/2014 6:45:00"),
@@ -31,15 +18,41 @@ namespace UnitTestSearchFlights
                 DestinationTime = Convert.ToDateTime("6/15/2014 8:54:00"),
                 Price = 578.00m
             };
-            FlightsCollection flightsData = new FlightsCollection();
-            flightsData.flightsCollection.Add(flight1);
-            DateTime departureTime = Convert.ToDateTime("6/15/2014 6:45:00");
-            DateTime destinationTime = Convert.ToDateTime("6/15/2014 8:54:00");
-            Decimal price = 578.00m;
+            FlightsCollection flights = new FlightsCollection();
 
-            bool result = SearchFlightsMethods.CheckIfExist(departureTime, destinationTime, price, flightsData);
+            SearchFlightsMethods.AddFlights(
+                "YYZ,6/15/2014 6:45:00,YYC,6/15/2014 8:54:00,$578.00",
+                ',',
+                "YYZ",
+                "YYC",
+                flights);
 
+            bool result = flights.flightsCollection.Contains(flight);
             Assert.IsTrue(result);
         }
+
+        [TestMethod]
+        public void AddFlights_RecordIn_Delimiter_Origin_Destination_FlightsData_ReturnFalse()
+        {
+            Flights flight = new Flights
+            {
+                Origin = "MIA",
+                DepartureTime = Convert.ToDateTime("6/15/2014 6:45:00"),
+                Destination = "ORD",
+                DestinationTime = Convert.ToDateTime("6/15/2014 8:54:00"),
+                Price = 578.00m
+            };
+            FlightsCollection flights = new FlightsCollection();
+
+            SearchFlightsMethods.AddFlights(
+                "YYZ,6/15/2014 6:45:00,YYC,6/15/2014 8:54:00,$578.00",
+                ',',
+                "YYZ",
+                "YYC",
+                flights);
+
+            bool result = flights.flightsCollection.Contains(flight);
+            Assert.IsFalse(result);
+        }       
     }
 }
