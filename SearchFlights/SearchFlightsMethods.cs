@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 
 namespace SearchFlights
 {
-    public static class HelperMethods
+    public static class SearchFlightsMethods
     {
         public static void DisplayMenu(ref string inputText)
         {

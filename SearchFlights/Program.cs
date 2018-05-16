@@ -19,7 +19,7 @@ namespace SearchFlights
             int cityLength = 3;
             int space = 3;
 
-            HelperMethods.DisplayMenu(ref inputText);
+            SearchFlightsMethods.DisplayMenu(ref inputText);
            
             while (inputText != "-1")
             {
@@ -40,11 +40,11 @@ namespace SearchFlights
                 catch(Exception e)
                 {
                     Console.WriteLine("\nPlease, enter origin and destination.\n");
-                    HelperMethods.DisplayMenu(ref inputText);
+                    SearchFlightsMethods.DisplayMenu(ref inputText);
                     continue;
                 }
 
-                HelperMethods.SearchFligths(origin, destination, flightsData);
+                SearchFlightsMethods.SearchFligths(origin, destination, flightsData);
 
                 var searchedFlights =
                     flightsData.flightsCollection
@@ -65,7 +65,7 @@ namespace SearchFlights
                     Console.WriteLine($"\nNo Flights Found for {origin} --> {destination}\n");
                 }
 
-                HelperMethods.DisplayMenu(ref inputText);
+                SearchFlightsMethods.DisplayMenu(ref inputText);
             }
         }    
     }

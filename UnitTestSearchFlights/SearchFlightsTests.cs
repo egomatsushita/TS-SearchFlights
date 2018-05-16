@@ -12,7 +12,7 @@ namespace UnitTestSearchFlights
         {
             string provider = "Provider3.txt";
             char expected = '|';
-            char actual = HelperMethods.GetDelimiter(provider);
+            char actual = SearchFlightsMethods.GetDelimiter(provider);
 
             Assert.AreEqual(expected, actual);
         }
@@ -22,7 +22,7 @@ namespace UnitTestSearchFlights
         {
             string provider = "Provider2.txt";
             char expected = ',';
-            char actual = HelperMethods.GetDelimiter(provider);
+            char actual = SearchFlightsMethods.GetDelimiter(provider);
 
             Assert.AreEqual(expected, actual);
         }
