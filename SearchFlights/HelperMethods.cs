@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace SearchFlights
 {
@@ -35,11 +36,13 @@ namespace SearchFlights
 
         public static char GetDelimiter(string provider)
         {
-            char delimiter = ',';
-            if (provider == "Provider3.txt")
-            {
-                delimiter = '|';
-            }
+            string providerPath = GetProviderPath(provider);
+            StreamReader reader = new StreamReader(providerPath);
+            string recordIn = reader.ReadLine();
+            string pattern = @"\W";
+            Regex re = new Regex(pattern);
+            Match mc = re.Match(recordIn);
+            char delimiter = Convert.ToChar(mc.Value);
 
             return delimiter;
         }
