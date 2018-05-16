@@ -27,39 +27,39 @@ namespace UnitTestSearchFlights
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        public void CheckIfExist_DepTime_DestTime_Price_FlightData_ReturnFalse()
-        {
-            string departureTime = "6/15/2014 6:45:00";
-            string destinationTime = "6/15/2014 8:54:00";
-            string price = "$578.00";
-            FlightsCollection flightsData = new FlightsCollection();
+        //[TestMethod]
+        //public void CheckIfExist_DepTime_DestTime_Price_FlightData_ReturnFalse()
+        //{
+        //    string departureTime = "6/15/2014 6:45:00";
+        //    string destinationTime = "6/15/2014 8:54:00";
+        //    string price = "$578.00";
+        //    FlightsCollection flightsData = new FlightsCollection();
 
-            bool result = HelperMethods.CheckIfExist(departureTime, destinationTime, price, flightsData);
+        //    bool result = HelperMethods.CheckIfExist(departureTime, destinationTime, price, flightsData);
 
-            Assert.IsFalse(result);
-        }
+        //    Assert.IsFalse(result);
+        //}
 
-        [TestMethod]
-        public void CheckIfExist_DepTime_DestTime_Price_FlightData_ReturnTrue()
-        {
-            Flights flight1 = new Flights
-            {
-                Origin = "YYZ",
-                DepartureTime = "6/15/2014 6:45:00",
-                Destination = "YYC",
-                DestinationTime = "6/15/2014 8:54:00",
-                Price = "$578.00"
-            };
-            FlightsCollection flightsData = new FlightsCollection();
-            flightsData.flightsCollection.Add(flight1);
-            string departureTime = "6/15/2014 6:45:00";
-            string destinationTime = "6/15/2014 8:54:00";
-            string price = "$578.00";
+        //[TestMethod]
+        //public void CheckIfExist_DepTime_DestTime_Price_FlightData_ReturnTrue()
+        //{
+        //    Flights flight1 = new Flights
+        //    {
+        //        Origin = "YYZ",
+        //        DepartureTime = "6/15/2014 6:45:00",
+        //        Destination = "YYC",
+        //        DestinationTime = "6/15/2014 8:54:00",
+        //        Price = "$578.00"
+        //    };
+        //    FlightsCollection flightsData = new FlightsCollection();
+        //    flightsData.flightsCollection.Add(flight1);
+        //    string departureTime = "6/15/2014 6:45:00";
+        //    string destinationTime = "6/15/2014 8:54:00";
+        //    string price = "$578.00";
            
-            bool result = HelperMethods.CheckIfExist(departureTime, destinationTime, price, flightsData);
+        //    bool result = HelperMethods.CheckIfExist(departureTime, destinationTime, price, flightsData);
 
-            Assert.IsTrue(result);
-        }
+        //    Assert.IsTrue(result);
+        //}
     }
 }

@@ -47,7 +47,7 @@ namespace SearchFlights
             return delimiter;
         }
 
-        public static bool CheckIfExist(string prvDepartureTime, string prvDestinationTime, string prvPrice, FlightsCollection flightsData)
+        public static bool CheckIfExist(DateTime prvDepartureTime, DateTime prvDestinationTime, Decimal prvPrice, FlightsCollection flightsData)
         {
             if (flightsData.flightsCollection != null)
             {
@@ -70,10 +70,10 @@ namespace SearchFlights
             string[] providers = { "Provider1.txt", "Provider2.txt", "Provider3.txt" };
             string[] fields;
             string prvOrigin;
-            string prvDepartureTime;
+            DateTime prvDepartureTime;
             string prvDestination;
-            string prvDestinationTime;
-            string prvPrice;
+            DateTime prvDestinationTime;
+            Decimal prvPrice;
             char delimiter;
             string providerPath;
 
@@ -91,10 +91,10 @@ namespace SearchFlights
                     {
                         fields = recordIn.Split(delimiter);
                         prvOrigin = fields[0];
-                        prvDepartureTime = fields[1].Replace('-', '/');
+                        bool res = DateTime.TryParse(fields[1].Replace('-', '/'), out prvDepartureTime);
                         prvDestination = fields[2];
-                        prvDestinationTime = fields[3].Replace('-', '/');
-                        prvPrice = fields[4];
+                        bool res1 = DateTime.TryParse(fields[3].Replace('-', '/'), out prvDestinationTime);
+                        bool res2 = Decimal.TryParse(fields[4].Substring(1), out prvPrice);
 
                         if (prvOrigin == origin && prvDestination == destination)
                         {

@@ -48,7 +48,7 @@ namespace SearchFlights
 
                 var searchedFlights =
                     flightsData.flightsCollection
-                        .OrderBy(flight => flight.Price.Substring(1))
+                        .OrderBy(flight => flight.Price)
                         .ThenBy(flight => Convert.ToDateTime(flight.DepartureTime));
 
                 if (searchedFlights.Any())
@@ -56,7 +56,7 @@ namespace SearchFlights
                     Console.WriteLine();
                     foreach (var flight in searchedFlights)
                     {
-                        Console.WriteLine($"{flight.Origin}-- > {flight.Destination}({flight.DepartureTime.Replace('-', '/')}-- >{flight.DestinationTime.Replace('-', '/')}) - {flight.Price}");
+                        Console.WriteLine($"{flight.Origin}-- > {flight.Destination}({flight.DepartureTime}-- >{flight.DestinationTime}) - ${flight.Price}");
                     }
                     Console.WriteLine("\n\n");
                 }

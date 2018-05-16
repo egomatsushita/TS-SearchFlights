@@ -9,9 +9,9 @@ namespace SearchFlights
     public class Flights
     {
         public string Origin { get; set; }
-        public string DepartureTime { get; set; }
+        public DateTime DepartureTime { get; set; }
         public string Destination { get; set; }
-        public string DestinationTime { get; set; }
-        public string Price { get; set; }
+        public DateTime DestinationTime { get; set; }
+        public Decimal Price { get; set; }
     }
 }
